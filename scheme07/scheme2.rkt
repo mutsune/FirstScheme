@@ -33,7 +33,8 @@
 ; ex1.4 - not yet
 (define (find ls e)
   (cond
-    ((null? ls) #f)
-    (else (+ (find ls e) 1))))
+    ((null? ls) 0)
+    ((equal? e (car ls)) 0)
+    (else (+ (find (cdr ls) e) 1))))
 
-(find '(1 2 3 4) 3)
+(find '(1 2 3 4) 5)
