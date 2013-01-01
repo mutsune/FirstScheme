@@ -24,17 +24,17 @@
       (+ (car ls) (lssum (cdr ls)))))
 
 ; ex1.3
-(define (rm ls e)
+(define (rm ls x)
   (cond
     ((null? ls) ''())
-    ((equal? e (car ls)) (cdr ls))
-    (else (cons (car ls) (rm (cdr ls) e)))))
+    ((eqv? x (car ls)) (cdr ls))
+    (else (cons (car ls) (rm (cdr ls) x)))))
 
-; ex1.4 - not yet
-(define (find ls e)
+; ex1.4
+(define (find ls x)
+  (find-aux ls x 0))
+(define (find-aux ls x i)
   (cond
-    ((null? ls) 0)
-    ((equal? e (car ls)) 0)
-    (else (+ (find (cdr ls) e) 1))))
-
-(find '(1 2 3 4) 5)
+    ((null? ls) #f)
+    ((eqv? x (car ls)) i)
+    (else (find-aux (cdr ls) x (+ i 1)))))
